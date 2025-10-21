@@ -1,8 +1,8 @@
-# Dockerfile สำหรับ base image Golang
+# Dockerfile สำหรับ base image Golang ใช้ Alpine
 ARG GO_VERSION=1.24.2
-FROM golang:${GO_VERSION}
+FROM golang:${GO_VERSION}-alpine
 
 # อัปเดต package และติดตั้งเครื่องมือที่จำเป็น (ถ้าต้องการ)
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    && update-ca-certificates
